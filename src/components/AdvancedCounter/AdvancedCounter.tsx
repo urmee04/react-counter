@@ -1,5 +1,7 @@
 //Import React's useState hook for state management
 import { useState } from "react";
+//Import heroicons/tailwind for up arrow icon and down arrow icon
+import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
 
 //Define a functional component named AdvancedCounter
 export const AdvancedCounter = () => {
@@ -23,7 +25,9 @@ export const AdvancedCounter = () => {
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             onClick={() => setCount((count) => count + 1)}
           >
-            ▲ Increment
+            {" "}
+            <ArrowUpIcon className="w-6 h-3" />
+            Increment
           </button>
 
           {/* Decrement button - decreases count by 1 */}
@@ -31,7 +35,8 @@ export const AdvancedCounter = () => {
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             onClick={() => setCount((count) => count - 1)}
           >
-            ▼ Decrement
+            <ArrowDownIcon className="w-6 h-3" />
+            Decrement
           </button>
 
           {/* Reset button - sets count back to 0 */}
