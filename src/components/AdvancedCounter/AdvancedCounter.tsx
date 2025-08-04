@@ -12,6 +12,24 @@ export const AdvancedCounter = () => {
   const [history, setHistory] = useState<number[]>([0]);
   //step state controls how much to increment/decrement
   const [step, setStep] = useState(1);
+  //status message that updates when saving to localStorage
+  const [status, setStatus] = useState("");
+
+  // helper to simulate saving and update message
+  const saveToLocalStorage = () => {
+    setStatus("Saving to localStorage...");
+    setTimeout(() => {
+      localStorage.setItem("count", count.toString());
+      localStorage.setItem("step", step.toString());
+      localStorage.setItem("history", JSON.stringify(history));
+      setStatus("Changes saved");
+    }, 500);
+  };
+
+  // save to localStorage when count, step, or history change
+  useEffect(() => {
+    saveToLocalStorage();
+  }, [count, step, history]);
 
   //update history every time count changes
   useEffect(() => {
@@ -42,6 +60,7 @@ export const AdvancedCounter = () => {
             min={1}
           />
         </div>
+
         {/* Button container with flex layout */}
         <div className="flex gap-4">
           {/* Increment button - increases count by 'step' value */}
@@ -79,13 +98,15 @@ export const AdvancedCounter = () => {
             {/* keep track of all counts*/}
             Count History:
           </h4>
-          <div className="space-y-1">
+          <div className="space-y-1 max-h-32 overflow-y-auto pr-2">
             {history.map((value, index) => (
               <p key={index}>{value}</p>
             ))}
           </div>
         </div>
       </div>
+      {/* Status Message */}
+      <div className="mt-2 text-lg text-gray-500 italic">{status}</div>
     </div>
   );
 };
