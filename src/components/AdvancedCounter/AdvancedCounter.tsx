@@ -56,11 +56,16 @@ export const AdvancedCounter = () => {
             Reset
           </button>
         </div>
-        <div className="text-center">
-          <p className="text-sm text-gray-700">
+        <div className="mt-6 text-left">
+          <h4 className="text-lg text-gray-700">
             {/* keep track of all counts*/}
-            Count History: {history.join(", ")}
-          </p>
+            Count History:
+          </h4>
+          <div className="space-y-1">
+            {history.map((value, index) => (
+              <p key={index}>{value}</p>
+            ))}
+          </div>
         </div>
       </div>
     </div>
