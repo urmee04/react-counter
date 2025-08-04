@@ -9,11 +9,14 @@ export const AdvancedCounter = () => {
   //and 'setCount' function to update the state
   const [count, setCount] = useState(0);
   //
-  const [history, setHistory] = useState<number[]>([]);
+  const [history, setHistory] = useState<number[]>([0]);
 
   //update history every time count changes
   useEffect(() => {
-    setHistory((prevHistory) => [...prevHistory, count]);
+    //only update if its a new value
+    if (history[history.length - 1] !== count) {
+      setHistory((prevHistory) => [...prevHistory, count]);
+    }
   }, [count]);
   return (
     //Main container with styling classes
