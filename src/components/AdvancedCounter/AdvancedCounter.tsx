@@ -1,5 +1,5 @@
-//Import React's useState hook for state management
-import { useState } from "react";
+//Import React's useState and useEffect hook for state management
+import { useEffect, useState } from "react";
 //Import heroicons/tailwind for up arrow icon and down arrow icon
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
 
@@ -8,7 +8,13 @@ export const AdvancedCounter = () => {
   //Initialize state variable 'count' with default value 0
   //and 'setCount' function to update the state
   const [count, setCount] = useState(0);
+  //
+  const [history, setHistory] = useState<number[]>([]);
 
+  //update history every time count changes
+  useEffect(() => {
+    setHistory((prevHistory) => [...prevHistory, count]);
+  }, [count]);
   return (
     //Main container with styling classes
     <div className="bg-white rounded-lg p-6 max-w-md mx-auto ring-1 ring-gray-300 mt-10">
@@ -46,6 +52,12 @@ export const AdvancedCounter = () => {
           >
             Reset
           </button>
+        </div>
+        <div className="text-center">
+          <p className="text-sm text-gray-700">
+            {/* keep track of all counts*/}
+            Count History: {history.join(", ")}
+          </p>
         </div>
       </div>
     </div>
