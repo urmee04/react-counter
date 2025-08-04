@@ -38,6 +38,24 @@ export const AdvancedCounter = () => {
       setHistory((prevHistory) => [...prevHistory, count]);
     }
   }, [count]);
+  useEffect(() => {
+    //handler function for key presses
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowUp") {
+        setCount((prev) => prev + step);
+      } else if (event.key === "ArrowDown") {
+        setCount((prev) => prev - step);
+      }
+    };
+
+    //attach event listener
+    document.addEventListener("keydown", handleKeyDown);
+
+    //cleanup function to remove listener on unmount
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [step]); //reattach listener if step changes
 
   return (
     //Main container with styling classes
