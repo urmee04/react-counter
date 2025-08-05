@@ -60,3 +60,12 @@ cd react-counter
 npm install
 npm run dev
 ```
+
+#### References
+
+Besides class lectures and materials I used below mentioned resources to complete this lab
+
+- [Tailwind Hero Icon](https://refine.dev/blog/heroicons-with-tailwind/#preparation)
+- [React Hooks Tutorial](https://www.youtube.com/watch?v=XEU3jlV9syI&t=281s)
+- [usestate](https://react.dev/reference/react/useState)
+- [useEffect](https://react.dev/reference/react/useEffect)
